@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    // typography
+    .text-topic {
+        @apply text-light font-bold font-sans;
+        font-size: 24px;
+    }
+
+    .text-label {
+        @apply text-light font-normal font-sans;
+        font-size: 16px;
+    }
+
+    .text-placeholder {
+        @apply text-bg-highlight-l font-normal font-sans;
+        font-size: 14px;
+    }
+
+    .text-tag-label {
+        @apply text-dark font-bold font-sans;
+        font-size: 12px;
+    }
+
+    .text-btn-label {
+        @apply text-dark font-normal font-sans;
+        font-size: 14px;
+    }
+    // input
+    .input {
+        @apply bg-bg-highlight text-placeholder p-2;
+    }
+
+    .input-center {
+        @apply bg-bg-highlight text-placeholder text-center p-2;
+    }
+}

@@ -1,0 +1,40 @@
+<div class="h-screen flex flex-col">
+  <div class="bg-dark p-3">
+    <div class="flex items-center">
+      <img class="me-3" style="height: 44px;" src="assets/logo.svg"/>
+      <p class="text-light font-display flex-auto" style="font-size: 24px;">PORTAL-PROXY</p>
+      <a href="#"><img src="assets/icons/github-solid.svg"/></a>
+    </div>
+  </div>
+  <div class="flex-auto flex">
+    <div class="resize-horizontal bg-bg h-full border-r border-r-bg-highlight" style="width: 265px;">
+      <div class="flex p-2">
+        <input type="text" class="flex-auto input-center me-2" placeholder="Search"/>
+        <div class="bg-secondary p-2 text-btn-label">+</div>
+      </div>
+      <app-request-card></app-request-card>
+      <app-request-card></app-request-card>
+      <app-request-card></app-request-card>
+      <app-request-card></app-request-card>
+      <app-request-card></app-request-card>
+      <app-request-card></app-request-card>
+    </div>
+    <div class="resize-horizontal flex-auto flex flex-col col-span-9 bg-bg h-full p-2">
+      <p class="text-topic mb-2">Request</p>
+      <div class="flex items-center mb-2">
+        <input type="text" class="input me-2" placeholder="GET">
+        <p class="text-label me-2">/</p>
+        <input  type="text" class="input flex-auto" placeholder="Path">
+      </div>
+      <input type="text" class="input w-full mb-2" placeholder="Description">
+      <p class="text-topic mb-2">Response</p>
+      <p class="text-label mb-2">Status</p>
+      <input type="text" class="input w-full mb-2" placeholder="200">
+      <p class="text-label mb-2">Body</p>
+      <div class="flex flex-auto">
+        <div class="bg-bg-highlight" style="width: 35px;"></div>
+        <div class="flex-auto bg-bg"></div>
+      </div>
+    </div>
+  </div>
+</div>
