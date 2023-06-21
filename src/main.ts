@@ -1,15 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import { CustomProxyMiddleware } from './custom-proxy-middleware';
 
-export var proxyMiddleware;
+
 
 async function bootstrap() {
-  // create proxy middleware
-  proxyMiddleware = createProxyMiddleware({ target: 'http://www.example.org', changeOrigin: true });
+  // create custom proxy and assign to global
+  global.coreProxy = new CustomProxyMiddleware('proxy.json');
 
   const app = await NestFactory.create(AppModule);
   await app.listen(3000);
-  
 }
+
 bootstrap();

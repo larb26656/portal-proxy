@@ -1,7 +1,6 @@
 import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { MockApiService } from 'src/feature/mock-api/mock-api.service';
-import { proxyMiddleware } from 'src/main';
 
 @Injectable()
 export class CoreMiddleware implements NestMiddleware {
@@ -16,7 +15,7 @@ export class CoreMiddleware implements NestMiddleware {
     const method = req.method;
     const path = req.baseUrl;
 
-    const mockApi = this.mockApiService.findByReq(method, path);
+    const mockApi = this.mockApiService.getByReq(method, path);
 
     const requestName = `[${method}:${path}]`;
 
@@ -28,12 +27,13 @@ export class CoreMiddleware implements NestMiddleware {
 
       res.status(mockApiRes.statusCode);
       res.header('content-type', mockApiRes.contentType);
-      res.send(mockApiRes.body);
+      return res.send(mockApiRes.body);
     } else {
       this.logger.debug(`${requestName} isn't in mock api. forward to reverse proxy.`);
 
-      // TODO reuse created proxy obj
-      proxyMiddleware(req, res, next);
+      const coreProxy = global.coreProxy;
+
+      coreProxy.invokeProxy(req, res, next);
     }
   }
 }

@@ -1,0 +1,11 @@
+[
+    {
+        "method": "GET",
+        "path": "/setting",
+        "response": {
+            "statusCode": 200,
+            "contentType": "application/json",
+            "body": "{}"
+        }
+    },
+]

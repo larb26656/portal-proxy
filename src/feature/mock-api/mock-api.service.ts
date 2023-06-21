@@ -7,11 +7,11 @@ export class MockApiService {
     constructor(private readonly mockApiRepository: MockApiRepository) {
     }
 
-    get(): MockApiDto[] {
-        return this.mockApiRepository.get();
+    find(): MockApiDto[] {
+        return this.mockApiRepository.find();
     }
 
-    findByReq(method: HttpMethod, path: string): MockApiDto {
-        return this.mockApiRepository.findByReq(method, path);
+    getByReq(method: HttpMethod, path: string): MockApiDto {
+        return this.mockApiRepository.getByReq(method, path);
     }
 }

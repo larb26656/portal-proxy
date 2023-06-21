@@ -1,25 +1,18 @@
 import { Injectable } from "@nestjs/common";
 import { HttpMethod, MockApiDto } from "./model/mock-api.dto";
+import * as fs from 'fs'
 
 @Injectable()
 export class MockApiRepository {
 
-    private mockData: MockApiDto[] = [{
-        method: "GET",
-        path: "/setting",
-        response: {
-            statusCode: 200,
-            contentType: "application/json",
-            body: "{}"
-        }
-    }];
-
-    get(): MockApiDto[] {
-        return this.mockData;
+    find(): MockApiDto[] {
+        const data = JSON.parse(fs.readFileSync('mock-api.json', 'utf8'));
+        return data as MockApiDto[];
     }
 
-    findByReq(method: HttpMethod, path: string): MockApiDto {
-        return this.mockData.find(e => e.method === method && e.path === path);
+    getByReq(method: HttpMethod, path: string): MockApiDto {
+        const data = this.find();
+        return data.find(e => e.method === method && e.path === path);
     }
 
 }

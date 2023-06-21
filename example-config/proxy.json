@@ -1,0 +1,6 @@
+{
+    "/service": {
+      "target": "http://www.example.org/api",
+      "changeOrigin": true
+    }
+  }
