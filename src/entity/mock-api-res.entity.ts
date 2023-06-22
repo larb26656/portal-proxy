@@ -1,4 +1,4 @@
-export interface MockApiResDto {
+export interface MockApiResEntity {
     statusCode: number;
     contentType?: string;
     body?: string;

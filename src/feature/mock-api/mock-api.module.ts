@@ -1,10 +1,11 @@
+import { MockApiController } from './mock-api.controller';
 import { Module } from '@nestjs/common';
 import { MockApiService } from './mock-api.service';
 import { MockApiRepository } from './mock-api.repository';
 
 @Module({
     imports: [],
-    controllers: [],
+    controllers: [MockApiController,],
     providers: [MockApiRepository, MockApiService],
     exports: [MockApiService]
 })

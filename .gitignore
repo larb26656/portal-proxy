@@ -37,3 +37,4 @@ lerna-debug.log*
 # config files
 /proxy.json
 /mock-api.json
+/config

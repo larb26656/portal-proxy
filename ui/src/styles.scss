@@ -38,4 +38,23 @@
     .input-center {
         @apply bg-bg-highlight text-placeholder text-center p-2;
     }
+
+    // btn
+    .btn {
+        @apply p-2 text-btn-label;
+
+        &.btn-secondary {
+            @apply bg-secondary;
+        }
+    }
+    
+
+    // tag
+    .tag {
+        @apply py-1 px-2 text-tag-label;
+
+        &.tag-primary {
+            @apply bg-primary;
+        }
+    }
 }

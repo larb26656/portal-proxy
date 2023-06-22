@@ -1,7 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { CustomProxyMiddleware } from './custom-proxy-middleware';
-
+import { ConfigDatabase } from './config-database';
+import { HttpExceptionFilter } from './filter/http-exception.filter';
 
 function printAppInfo() {
   const blueColorCode = '\u001b[34m';
@@ -15,9 +16,15 @@ function printAppInfo() {
 async function bootstrap() {
   printAppInfo();
   // create custom proxy and assign to global
-  global.coreProxy = new CustomProxyMiddleware('proxy.json');
+  global.configDatabase = new ConfigDatabase(
+    'config/mock-api.json',
+    'config/proxy.json'
+  );
+  
+  global.coreProxy = new CustomProxyMiddleware(global.configDatabase.proxyDBPath);
 
   const app = await NestFactory.create(AppModule);
+  app.useGlobalFilters(new HttpExceptionFilter());
   await app.listen(3000);
 }
 
