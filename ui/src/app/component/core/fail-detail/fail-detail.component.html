@@ -1,0 +1,20 @@
+<div class="fail-detail-container">
+  <!-- <img
+    height="200px"
+    src="/assets/images/illustrator/error.svg"
+  />
+  <div class="mb-2"></div> -->
+  <p
+    *ngIf="msg"
+    class="text-label"
+  >
+    {{ msg }}
+  </p>
+  <button
+    *ngIf="onRetryFn"
+    (click)="onRetryFn()"
+    class="btn btn-primary"
+  >
+    Refresh
+  </button>
+</div>

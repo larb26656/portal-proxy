@@ -1,0 +1,52 @@
+
+<form
+  #form="ngForm"
+  (ngSubmit)="onSave()"
+  [formGroup]="mockApiForm"
+  class="flex flex-col h-full"
+>
+    <div class="flex items-center">
+      <p class="text-label flex-auto me-2">{{ data.path }}</p>
+      <button type="submit" class="btn btn-sm btn-primary me-2" [disabled]="(this.data.id && !mockApiForm.dirty)" (click)="form.onSubmit($event)">Save</button>
+      <button type="button" class="btn btn-sm btn-text" (click)="onClose()">X</button>
+    </div>
+    <p class="text-topic mb-2">Request</p>
+    <div class="flex items-center mb-2">
+      <select placeholder="Method" class="input me-2" formControlName="method">
+        <option [value]="method" *ngFor="let method of methods">{{ method }}</option>
+      </select>
+      <p class="text-label me-2">/</p>
+      <input  type="text" class="input flex-auto" placeholder="Path" formControlName="path">
+    </div>
+
+    <div>
+      <p class="text-label">Description</p>
+      <input type="text" class="input w-full mb-2" formControlName="description">
+    </div>
+    
+    <p class="text-topic mb-2">Response</p>
+    
+    <div class="flex items-center">
+      <div class="me-2">
+        <p class="text-label">Status code</p>
+        <input type="text" class="input" formControlName="statusCode">
+      </div>
+      <div class="flex-auto">
+        <p class="text-label">Content-type</p>
+        <select class="input w-full" formControlName="responseContentType">
+          <option [value]="responseContentType" *ngFor="let responseContentType of responseContentTypes">{{ responseContentType }}</option>
+        </select>
+      </div>
+    </div>
+    
+    <p class="text-label mb-2">Body</p>
+    <div class="flex-auto">
+        <ngs-code-editor
+          class="h-full"
+          [theme]="theme"
+          [codeModel]="bodyCodeModel"
+          [options]="options"
+          (valueChanged)="onBodyChanged($event)">
+        </ngs-code-editor>
+    </div>
+</form>

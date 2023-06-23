@@ -1,0 +1,9 @@
+.fail-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    object-fit: fill;
+  }
+}

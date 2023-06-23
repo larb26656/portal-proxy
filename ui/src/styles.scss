@@ -8,43 +8,76 @@
     // typography
     .text-topic {
         @apply text-light font-bold font-sans;
+
         font-size: 24px;
     }
 
     .text-label {
         @apply text-light font-normal font-sans;
+
         font-size: 16px;
+    }
+
+    .text-input {
+        @apply text-light font-normal font-sans;
+
+        font-size: 14px;
     }
 
     .text-placeholder {
         @apply text-bg-highlight-l font-normal font-sans;
+        
         font-size: 14px;
     }
 
     .text-tag-label {
         @apply text-dark font-bold font-sans;
+
         font-size: 12px;
     }
 
     .text-btn-label {
         @apply text-dark font-normal font-sans;
+
         font-size: 14px;
     }
     // input
     .input {
-        @apply bg-bg-highlight text-placeholder p-2;
+        @apply bg-bg-highlight text-input placeholder:text-placeholder p-2;
+
+        &.ng-invalid.ng-touched {
+            @apply border border-danger;
+        }
     }
 
     .input-center {
-        @apply bg-bg-highlight text-placeholder text-center p-2;
+        @apply bg-bg-highlight text-input placeholder:text-placeholder text-center p-2 ;
+
+        &.ng-invalid.ng-touched {
+            @apply border border-danger;
+        }
     }
 
     // btn
     .btn {
         @apply p-2 text-btn-label;
 
+        border-radius: 5px;
+
+        &.btn-sm {
+            @apply p-1
+        }
+
+        &.btn-primary{
+            @apply bg-primary disabled:bg-bg-highlight-l;
+        }
+
         &.btn-secondary {
-            @apply bg-secondary;
+            @apply bg-secondary disabled:bg-bg-highlight-l;
+        }
+
+        &.btn-text {
+            @apply bg-transparent text-light;
         }
     }
     
@@ -52,6 +85,8 @@
     // tag
     .tag {
         @apply py-1 px-2 text-tag-label;
+
+        border-radius: 5px;
 
         &.tag-primary {
             @apply bg-primary;

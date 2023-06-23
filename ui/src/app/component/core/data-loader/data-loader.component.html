@@ -1,0 +1,35 @@
+<div class="data-loader-container">
+  <ng-container *ngIf="data">
+    <ng-container [ngSwitch]="data.status">
+      <ng-container *ngSwitchCase="DataLoaderStatus.IDLE"><ng-container *ngIf="idlePage" [ngTemplateOutlet]="idlePage"></ng-container></ng-container>
+      <ng-container *ngSwitchCase="DataLoaderStatus.LOADING">
+        <div class="loader-container">
+          <ng-container *ngIf="loaderPage != null; else defaultLoaderPage">
+            <ng-container [ngTemplateOutlet]="loaderPage"></ng-container>
+          </ng-container>
+          <ng-template #defaultLoaderPage><app-loader></app-loader></ng-template>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="DataLoaderStatus.FAIL">
+        <div class="fail-container">
+          <ng-container *ngIf="failPage != null; else defaultFailPage">
+            <ng-container
+              [ngTemplateOutlet]="failPage"
+              [ngTemplateOutletContext]="{
+                error: data.error,
+                errorMsg: data.errorMsg,
+                retryFn: data.onRetryFn
+              }"
+            ></ng-container>
+          </ng-container>
+          <ng-template #defaultFailPage>
+            <app-fail-detail
+              [msg]="data.errorMsg"
+              [onRetryFn]="data.onRetryFn"
+            ></app-fail-detail>
+          </ng-template>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>

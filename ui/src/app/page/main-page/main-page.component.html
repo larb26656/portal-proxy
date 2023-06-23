@@ -1,0 +1,16 @@
+<div class="flex h-full">
+  <div class="bg-bg h-full border-r border-r-bg-highlight flex flex-col" style="width: 265px;">
+    <div class="flex p-2">
+      <input type="text" class="flex-auto input-center me-2" placeholder="Search" [(ngModel)]="searchKeyword" (ngModelChange)="onSearchChange()"/>
+      <button type="button" class="btn btn-secondary" (click)="onAdd()">+</button>
+    </div>
+    <app-data-loader class="flex-auto" [data]="fetchMockApiDataLoader">
+      <ng-template #idlePage>
+        <app-request-card *ngFor="let data of mockApiDataList" [data]="data" (cardClick)="onMockApiSelect($event)" (deleteClick)="onDelete($event)" [active]="data.id == mockApiData?.id"></app-request-card>
+      </ng-template>
+    </app-data-loader>
+  </div>
+  <div class="flex-auto flex flex-col col-span-9 bg-bg h-full p-2">
+    <app-mock-api-editor class="h-full" *ngIf="mockApiData" [data]="mockApiData"></app-mock-api-editor>
+  </div>
+</div>

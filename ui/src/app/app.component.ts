@@ -1,31 +1,21 @@
 import { Component } from '@angular/core';
 import { CodeModel } from '@ngstack/code-editor';
+import { NotificationService } from './service/notification/notification.service';
+import { animationFrameScheduler, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'protal-proxy-ui';
+  loading = false;
 
-  theme = 'vs-dark';
+  constructor(
+    notify: NotificationService,
+  ) {
+    const onLoading = (loading: boolean) => (this.loading = loading);
 
-  codeModel: CodeModel = {
-    language: 'json',
-    uri: 'main.json',
-    value: '{}'
-  };
-
-  options = {
-    contextmenu: true,
-    minimap: {
-      enabled: true
-    }
-  };
-
-  onCodeChanged(value: string) {
-    console.log('CODE', value);
+    notify.spinner.pipe(debounceTime(0, animationFrameScheduler)).subscribe(onLoading);
   }
-
 }

@@ -15,12 +15,13 @@ function printAppInfo() {
 
 async function bootstrap() {
   printAppInfo();
-  // create custom proxy and assign to global
+  
   global.configDatabase = new ConfigDatabase(
     'config/mock-api.json',
     'config/proxy.json'
   );
   
+  // create custom proxy and assign to global
   global.coreProxy = new CustomProxyMiddleware(global.configDatabase.proxyDBPath);
 
   const app = await NestFactory.create(AppModule);

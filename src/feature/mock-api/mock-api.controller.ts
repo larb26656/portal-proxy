@@ -26,7 +26,7 @@ export class MockApiController {
     }
   
     @Put()
-    update(@Param('id') id: string, @Body() updateReq: MockApiEntity) {
+    update(@Body() updateReq: MockApiEntity) {
         return ApiResponseUtils.updateDataSuccess(this.mockApiService.update(updateReq));
     }
   

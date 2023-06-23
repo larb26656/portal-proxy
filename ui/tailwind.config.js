@@ -12,6 +12,9 @@ module.exports = {
       'bg-highlight-l': '#ababab',
       'dark': '#000000',
       'light': '#ffffff',
+      'danger': '#f07777',
+      'danger-weak': '#f6b9b9',
+      'transparent': 'transparent', 
     },
     fontFamily: {
       sans: ['Roboto', 'sans-serif'],
