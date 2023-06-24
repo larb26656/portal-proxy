@@ -3,6 +3,8 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'Hello World!';
+    const version = process.env.npm_package_version;
+    
+    return `() Postal proxy () v.${version}`;
   }
 }

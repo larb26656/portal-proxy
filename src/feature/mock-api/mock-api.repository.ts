@@ -64,6 +64,7 @@ export class MockApiRepository {
 
     getByReq(method: string, path: string): MockApiEntity {
         const dataList = this.find();
+    
         return dataList.find(e => e.request.method === method && e.request.path === path);
     }
 

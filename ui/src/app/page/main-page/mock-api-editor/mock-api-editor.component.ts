@@ -47,11 +47,15 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
           validators: [],
           nonNullable: true,
         }),
-        contentType: fb.control<string>('', {
+        isStrictContentType: fb.control<boolean>(false, {
           validators: [Validators.required],
           nonNullable: true,
         }),
-        isHasBody: fb.control<boolean>(false, {
+        contentType: fb.control<string>('', {
+          validators: [],
+          nonNullable: true,
+        }),
+        isStrictBody: fb.control<boolean>(false, {
           validators: [Validators.required],
           nonNullable: true,
         }),
@@ -82,7 +86,15 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
 
     const requestControls = this.mockApiForm.controls.request.controls;
 
-    requestControls.isHasBody.valueChanges.subscribe((value) => {
+    requestControls.isStrictContentType.valueChanges.subscribe((value) => {
+      if (value) {
+        requestControls.contentType.enable();
+      } else {
+        requestControls.contentType.disable();
+      }      
+    });
+
+    requestControls.isStrictBody.valueChanges.subscribe((value) => {
       if (value) {
         requestControls.body.enable();
       } else {
@@ -114,8 +126,9 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
         method: request.method ?? '',
         path: request.path ?? '',
         description: request.description ?? '',
+        isStrictContentType: request.isStrictContentType ?? false,
         contentType: request.contentType ?? '',
-        isHasBody: request.isHasBody ?? false,
+        isStrictBody: request.isStrictBody ?? false,
         body: request.body ?? ''
       },
       response: {
@@ -145,8 +158,9 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
         method: requestControls.method.value,
         path: requestControls.path.value,
         description: requestControls.description.value,
+        isStrictContentType: requestControls.isStrictContentType.value,
         contentType: requestControls.contentType.value,
-        isHasBody: requestControls.isHasBody.value,
+        isStrictBody: requestControls.isStrictBody.value,
         body: requestControls.body.value
       },
       
@@ -201,8 +215,9 @@ interface MockApiRequestFormModel {
   method: FormControl<string>;
   path: FormControl<string>;
   description: FormControl<string>;
+  isStrictContentType: FormControl<boolean>;
   contentType: FormControl<string>;
-  isHasBody: FormControl<boolean>;
+  isStrictBody: FormControl<boolean>;
   body: FormControl<string>;
 }
 

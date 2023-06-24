@@ -6,8 +6,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "copy:ui-assets": "rm -rf dist/ui-assets && cp -R ui-assets dist/ui-assets",
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "nest build && npm run copy:ui-assets",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -24,6 +25,7 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/serve-static": "^4.0.0",
     "http-proxy-middleware": "^2.0.6",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

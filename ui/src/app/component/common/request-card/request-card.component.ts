@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MockApiDto } from 'src/app/model/dto/mock-api.dto';
+import { MockApiDto, createDefaultMockApiDto } from 'src/app/model/dto/mock-api.dto';
 
 @Component({
   selector: 'app-request-card',
@@ -12,18 +12,7 @@ export class RequestCardComponent implements OnInit {
   active: boolean = false;
 
   @Input()
-  data: MockApiDto = {
-    request: {
-      method: '',
-      path: '',
-      contentType: 'application/json'
-    },
-    response: {
-      delayInSec: 0,
-      statusCode: 200,
-      contentType: 'application/json'
-    },
-  };
+  data: MockApiDto = createDefaultMockApiDto();
 
   @Output()
   cardClick = new EventEmitter<MockApiDto>();

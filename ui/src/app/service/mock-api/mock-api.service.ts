@@ -3,13 +3,14 @@ import {
   HttpClient
 } from '@angular/common/http';
 import { MockApiDto } from 'src/app/model/dto/mock-api.dto';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockApiService {
 
-  private baseUrl = '';
+  private baseUrl = environment.baseApiUrl;
 
   constructor(private readonly http: HttpClient) { }
 

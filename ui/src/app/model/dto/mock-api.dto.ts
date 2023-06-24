@@ -7,17 +7,18 @@ export interface MockApiDto {
     response: MockApiResDto
 }
 
-export function createDefaultMockApiDto() {
+export function createDefaultMockApiDto(): MockApiDto {
     return {
         request: {
           method: 'GET',
           path: '',
-          contentType: 'application/json'
+          isStrictContentType: false,
+          isStrictBody: false
         },
         response: {
           delayInSec: 1,
           statusCode: 200,
           contentType: 'application/json'
         },
-    };
+    } as MockApiDto;
 }

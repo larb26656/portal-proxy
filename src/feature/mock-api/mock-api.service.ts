@@ -1,10 +1,14 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { MockApiRepository } from './mock-api.repository';
 import { MockApiEntity } from '../../entity/mock-api.entity';
 import { MockApiNotFoundException } from 'src/exception/mock-api-not-found.exception';
+import { JsonUtils } from 'src/utils/json-utils';
 
 @Injectable()
 export class MockApiService {
+
+    private readonly logger = new Logger(MockApiService.name);
+
     constructor(private readonly mockApiRepository: MockApiRepository) {
     }
 
@@ -48,7 +52,46 @@ export class MockApiService {
         return this.mockApiRepository.findById(id);
     }
 
-    getByReq(method: string, path: string): MockApiEntity {
-        return this.mockApiRepository.getByReq(method, path);
+    getByReq(method: string, path: string, contentType: string, body: any): MockApiEntity {
+
+        const requestName = `[${method}:${path}]`;
+
+        let apiPath = path;
+
+        // remove first /
+        if (path.startsWith('/')) {
+            apiPath = path.slice(1);
+        }
+
+        const mockApiEntity = this.mockApiRepository.getByReq(method, apiPath);
+
+        if (!mockApiEntity) {
+            return null;
+        }
+
+        const requestOption = mockApiEntity.request
+
+
+        if (requestOption.isStrictBody) {
+            const isBodyEqual = JsonUtils.compare(
+                body,
+                JSON.parse(requestOption.body)
+            );
+
+            if (!isBodyEqual) {
+                this.logger.debug(`${requestName} body is not equal with request option`);
+                return null;
+            }
+        }
+
+        if (requestOption.isStrictContentType) {
+            if (contentType !== requestOption.contentType) {
+                this.logger.debug(`${requestName} contentType is not equal with request option`);
+                return null;
+            }
+        }
+
+
+        return mockApiEntity;
     }
 }

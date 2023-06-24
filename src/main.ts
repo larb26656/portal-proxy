@@ -25,7 +25,9 @@ async function bootstrap() {
   global.coreProxy = new CustomProxyMiddleware(global.configDatabase.proxyDBPath);
 
   const app = await NestFactory.create(AppModule);
+
   app.useGlobalFilters(new HttpExceptionFilter());
+
   await app.listen(3000);
 }
 

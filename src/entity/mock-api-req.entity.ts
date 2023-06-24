@@ -2,7 +2,8 @@ export interface MockApiReqEntity {
     method: string
     path: string
     description?: string
-    contentType: string
-    isHasBody?: boolean
+    isStrictContentType: boolean
+    contentType?: string
+    isStrictBody: boolean
     body?: string
 }
