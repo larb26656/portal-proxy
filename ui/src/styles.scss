@@ -4,6 +4,29 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+@layer base {
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply bg-bg;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-bg-highlight-l;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-secondary;
+  }
+}
 @layer components {
     // typography
     .text-topic {

@@ -4,65 +4,71 @@
   [formGroup]="mockApiForm"
   class="flex flex-col h-full space-y-2"
 >
-    <div class="flex items-center space-x-2">
-      <p class="text-label flex-auto">{{ data.request.path }}</p>
-      <button type="submit" class="btn btn-sm btn-primary" [disabled]="(this.data.id && !mockApiForm.dirty)" (click)="form.onSubmit($event)">Save</button>
-      <button type="button" class="btn btn-sm btn-text" (click)="onClose()"><i class="pp-i pp-i-close-solid"></i></button>
+    <!-- header -->
+    <div class="">
+      <div class="flex items-center space-x-2">
+        <p class="text-label flex-auto">{{ data.request.path }}</p>
+        <button type="submit" class="btn btn-sm btn-primary" [disabled]="(this.data.id && !mockApiForm.dirty)" (click)="form.onSubmit($event)">Save</button>
+        <button type="button" class="btn btn-sm btn-text" (click)="onClose()"><i class="pp-i pp-i-close-solid"></i></button>
+      </div>
     </div>
 
-    <form [formGroup]="mockApiForm.controls.request" class="space-y-2">
-      <p class="text-topic">Request</p>
-
-      <div class="flex items-center space-x-2">
-        <select placeholder="Method" class="input" formControlName="method">
-          <option [value]="method" *ngFor="let method of methods">{{ method }}</option>
-        </select>
-        <p class="text-label-input">/</p>
-        <input  type="text" class="input flex-auto" placeholder="Path" formControlName="path">
-      </div>
+    <!-- content -->
+    <div class="flex-auto flex flex-col overflow-y-auto">
+      <form [formGroup]="mockApiForm.controls.request" class="space-y-2">
+        <p class="text-topic">Request</p>
   
-      <div class="">
-        <p class="text-label-input">Description</p>
-        <input type="text" class="input w-full" formControlName="description">
-      </div>
-
-      <div class="">
-        <p class="text-label-input">Content-type</p>
-        <select class="input w-full" formControlName="contentType">
-          <option [value]="responseContentType" *ngFor="let responseContentType of responseContentTypes">{{ responseContentType }}</option>
-        </select>
-      </div>
-  
-      <p class="text-label-input"><input type="checkbox" class="me-2" formControlName="isHasBody">Body</p>
-      <div class="flex-auto">
-          <code-input formControlName="body"></code-input>
-      </div>
-    </form>
-
-    <form [formGroup]="mockApiForm.controls.response" class="space-y-2">
-      <p class="text-topic">Response</p>
+        <div class="flex items-center space-x-2">
+          <select placeholder="Method" class="input" formControlName="method">
+            <option [value]="method" *ngFor="let method of methods">{{ method }}</option>
+          </select>
+          <p class="text-label-input">/</p>
+          <input  type="text" class="input flex-auto" placeholder="Path" formControlName="path">
+        </div>
     
-      <div class="flex items-center space-x-2">
         <div class="">
-          <p class="text-label-input">Delay</p>
-          <input type="number" class="input" formControlName="delayInSec">
+          <p class="text-label-input">Description</p>
+          <input type="text" class="input w-full" formControlName="description">
         </div>
+  
         <div class="">
-          <p class="text-label-input">Status code</p>
-          <input type="number" class="input" formControlName="statusCode">
-        </div>
-        <div class="flex-auto">
           <p class="text-label-input">Content-type</p>
           <select class="input w-full" formControlName="contentType">
             <option [value]="responseContentType" *ngFor="let responseContentType of responseContentTypes">{{ responseContentType }}</option>
           </select>
         </div>
-      </div>
+    
+        <p class="text-label-input"><input type="checkbox" class="me-2" formControlName="isHasBody">Body</p>
+        <div class="flex-auto">
+            <code-input formControlName="body"></code-input>
+        </div>
+      </form>
+  
+      <form [formGroup]="mockApiForm.controls.response" class="space-y-2">
+        <p class="text-topic">Response</p>
       
-      <p class="text-label-input">Body</p>
-      <div class="flex-auto">
-        <code-input formControlName="body"></code-input>
-      </div>
-    </form>
+        <div class="flex items-center space-x-2">
+          <div class="">
+            <p class="text-label-input">Delay</p>
+            <input type="number" class="input" formControlName="delayInSec">
+          </div>
+          <div class="">
+            <p class="text-label-input">Status code</p>
+            <input type="number" class="input" formControlName="statusCode">
+          </div>
+          <div class="flex-auto">
+            <p class="text-label-input">Content-type</p>
+            <select class="input w-full" formControlName="contentType">
+              <option [value]="responseContentType" *ngFor="let responseContentType of responseContentTypes">{{ responseContentType }}</option>
+            </select>
+          </div>
+        </div>
+        
+        <p class="text-label-input">Body</p>
+        <div class="flex-auto">
+          <code-input formControlName="body"></code-input>
+        </div>
+      </form>
+    </div>
    
 </form>
