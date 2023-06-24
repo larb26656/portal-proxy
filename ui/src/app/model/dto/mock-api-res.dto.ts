@@ -1,5 +1,6 @@
 export interface MockApiResDto {
-    statusCode?: number;
-    contentType?: string;
+    delayInSec: number;
+    statusCode: number;
+    contentType: string;
     body?: string;
 }

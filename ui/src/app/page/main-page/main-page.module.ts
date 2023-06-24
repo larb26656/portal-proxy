@@ -7,6 +7,7 @@ import { DataLoaderModule } from 'src/app/component/core/data-loader/data-loader
 import { MockApiEditorComponent } from './mock-api-editor/mock-api-editor.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainPageComponent } from './main-page.component';
+import { CodeInputModule } from 'src/app/component/core/input/code-input/code-input.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { MainPageComponent } from './main-page.component';
     CodeEditorModule,
     DataLoaderModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CodeInputModule
   ],
   declarations: [MainPageComponent, MockApiEditorComponent]
 })

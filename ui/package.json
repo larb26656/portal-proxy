@@ -6,7 +6,8 @@
     "start": "ng serve --proxy-config proxy.config.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "ci:generate-assets": "node  ./ci/generate-assets.js"
   },
   "private": true,
   "dependencies": {
@@ -19,8 +20,10 @@
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
     "@ngstack/code-editor": "^5.0.0",
+    "fantasticon": "^2.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.0",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {

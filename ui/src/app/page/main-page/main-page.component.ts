@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CodeModel } from '@ngstack/code-editor';
 import { finalize } from 'rxjs';
 import { DataLoaderData } from 'src/app/component/core/data-loader/model/data-loader-data';
-import { MockApiDto } from 'src/app/model/dto/mock-api.dto';
+import { MockApiDto, createDefaultMockApiDto } from 'src/app/model/dto/mock-api.dto';
 import { MockApiService } from 'src/app/service/mock-api/mock-api.service';
 import { NotificationService } from 'src/app/service/notification/notification.service';
 
@@ -33,7 +33,7 @@ export class MainPageComponent implements OnInit {
   }
 
   updateMockApiDataList() {
-    this.mockApiDataList = this.fetchMockApiDataLoader?.data?.filter(e => e.path?.includes(this.searchKeyword)) ?? [];
+    this.mockApiDataList = this.fetchMockApiDataLoader?.data?.filter(e => e.request.path?.includes(this.searchKeyword)) ?? [];
   }
 
   onSearchChange() {
@@ -59,13 +59,7 @@ export class MainPageComponent implements OnInit {
   }
 
   onAdd() {
-    const newData = {
-      method: 'GET',
-      response: {
-        contentType: 'application/json',
-        statusCode: 200
-      }
-    } as MockApiDto;
+    const newData = createDefaultMockApiDto();
 
     this.onMockApiSelect(newData);
   }

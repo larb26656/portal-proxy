@@ -1,5 +1,6 @@
 export interface MockApiResEntity {
+    delayInSec: number;
     statusCode: number;
-    contentType?: string;
+    contentType: string;
     body?: string;
 }

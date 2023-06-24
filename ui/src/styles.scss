@@ -18,6 +18,12 @@
         font-size: 16px;
     }
 
+    .text-label-input {
+        @apply text-light font-normal font-sans mb-2;
+
+        font-size: 14px;
+    }
+
     .text-input {
         @apply text-light font-normal font-sans;
 

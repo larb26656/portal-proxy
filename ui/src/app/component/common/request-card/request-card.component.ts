@@ -12,7 +12,18 @@ export class RequestCardComponent implements OnInit {
   active: boolean = false;
 
   @Input()
-  data?: MockApiDto;
+  data: MockApiDto = {
+    request: {
+      method: '',
+      path: '',
+      contentType: 'application/json'
+    },
+    response: {
+      delayInSec: 0,
+      statusCode: 200,
+      contentType: 'application/json'
+    },
+  };
 
   @Output()
   cardClick = new EventEmitter<MockApiDto>();

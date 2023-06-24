@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "portal-proxy-icon";
+    src: url("./portal-proxy-icon.eot?52d2e28a4faed6be57df9429575188a5#iefix") format("embedded-opentype"),
+url("./portal-proxy-icon.woff2?52d2e28a4faed6be57df9429575188a5") format("woff2"),
+url("./portal-proxy-icon.woff?52d2e28a4faed6be57df9429575188a5") format("woff");
+}
+
+i[class^="pp-i-"]:before, i[class*=" pp-i-"]:before {
+    font-family: portal-proxy-icon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.pp-i-add-solid:before {
+    content: "\f101";
+}
+.pp-i-close-solid:before {
+    content: "\f102";
+}
+.pp-i-delete-solid:before {
+    content: "\f103";
+}
+.pp-i-git-hub-solid:before {
+    content: "\f104";
+}

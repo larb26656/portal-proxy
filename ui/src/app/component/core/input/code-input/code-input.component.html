@@ -1,0 +1,11 @@
+<div [ngClass]="{
+  'disabled': isDisabled
+}">
+  <ngs-code-editor
+    class="h-full"
+    [theme]="theme"
+    [codeModel]="codeModel"
+    [options]="options"
+    (valueChanged)="onValueChanged($event)">
+  </ngs-code-editor>
+</div>

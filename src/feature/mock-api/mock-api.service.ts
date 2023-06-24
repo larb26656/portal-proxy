@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { MockApiRepository } from './mock-api.repository';
-import { HttpMethod, MockApiEntity } from '../../entity/mock-api.entity';
+import { MockApiEntity } from '../../entity/mock-api.entity';
 import { MockApiNotFoundException } from 'src/exception/mock-api-not-found.exception';
 
 @Injectable()
@@ -48,7 +48,7 @@ export class MockApiService {
         return this.mockApiRepository.findById(id);
     }
 
-    getByReq(method: HttpMethod, path: string): MockApiEntity {
+    getByReq(method: string, path: string): MockApiEntity {
         return this.mockApiRepository.getByReq(method, path);
     }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { HttpMethod, MockApiEntity } from "../../entity/mock-api.entity";
+import { MockApiEntity } from "../../entity/mock-api.entity";
 import * as fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -62,9 +62,9 @@ export class MockApiRepository {
         this.updateDB(newDataList);
     }
 
-    getByReq(method: HttpMethod, path: string): MockApiEntity {
+    getByReq(method: string, path: string): MockApiEntity {
         const dataList = this.find();
-        return dataList.find(e => e.method === method && e.path === path);
+        return dataList.find(e => e.request.method === method && e.request.path === path);
     }
 
 }
