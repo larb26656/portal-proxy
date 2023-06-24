@@ -1,10 +1,6 @@
 {
-    "/service/oms": {
-      "target": "http://103.13.31.37:10808",
-      "changeOrigin": true,
-      "secure": false,
-      "pathRewrite": {
-        "^/service/oms": "/oms"
-      }
-    }
+  "/service": {
+      "target": "http://www.example.org",
+      "changeOrigin": true
   }
+}

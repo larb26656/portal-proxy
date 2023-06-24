@@ -7,7 +7,7 @@
     <!-- header -->
     <div class="">
       <div class="flex items-center space-x-2">
-        <p class="text-label flex-auto">{{ data.request.path }}</p>
+        <input  type="text" class="input flex-auto" placeholder="Name" formControlName="name">
         <button type="submit" class="btn btn-sm btn-primary" (click)="form.onSubmit($event)">Save</button>
         <button type="button" class="btn btn-sm btn-text" (click)="onClose()"><i class="pp-i pp-i-close-solid"></i></button>
       </div>

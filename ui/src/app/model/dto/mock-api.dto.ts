@@ -3,6 +3,7 @@ import { MockApiResDto } from "./mock-api-res.dto"
 
 export interface MockApiDto {
     id?: string
+    name: string
     request: MockApiReqDto
     response: MockApiResDto
 }

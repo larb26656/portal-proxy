@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CodeModel } from '@ngstack/code-editor';
 import { finalize } from 'rxjs';
 import { DataLoaderData } from 'src/app/component/core/data-loader/model/data-loader-data';
 import { MockApiDto, createDefaultMockApiDto } from 'src/app/model/dto/mock-api.dto';

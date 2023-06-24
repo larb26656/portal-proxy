@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import { Request, Response, NextFunction } from 'express';
-import { RequestHandler, createProxyMiddleware } from 'http-proxy-middleware';
+import { RequestHandler, createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 import { Logger } from '@nestjs/common';
 
 export class CustomProxyMiddleware {
@@ -22,9 +22,16 @@ export class CustomProxyMiddleware {
         return data;
     }
 
+    private modifyConfig(createProxyMiddlewareConfig: any) {
+        // fix request body POST error
+        createProxyMiddlewareConfig.onProxyReq = fixRequestBody;
+    }
+
 
     private registerProxy(config: any) {
         for (const [key, value] of Object.entries(config)) {
+
+            this.modifyConfig(value);
             this.proxyMiddlewareRegistation[key] = {
                 config: value,
                 middlewareFn: createProxyMiddleware(value)
@@ -61,12 +68,14 @@ export class CustomProxyMiddleware {
         return path.startsWith(pattern);
     }
 
+
     private getMatchProxy(path: string): RequestHandler {
         for (const pathPattern in this.proxyMiddlewareRegistation) {
 
             if (this.checkInPathPattern(path, pathPattern)) {
                 const proxy = this.proxyMiddlewareRegistation[pathPattern];
 
+                console.log(proxy);
                 return proxy.middlewareFn;
             }
         }
@@ -76,8 +85,6 @@ export class CustomProxyMiddleware {
 
     invokeProxy(req: Request, res: Response, next: NextFunction) {
         const path = req.baseUrl;
-
-        this.proxyMiddlewareRegistation.for
         
         const matchProxy = this.getMatchProxy(path);
 

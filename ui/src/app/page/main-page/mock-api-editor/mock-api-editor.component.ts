@@ -34,6 +34,10 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
     private readonly mainPageComponent: MainPageComponent
     ) {
     this.mockApiForm = fb.group<MockApiFormModel>({
+      name: fb.control('', {
+        validators: [],
+        nonNullable: true,
+      }),
       request: fb.group<MockApiRequestFormModel>({
         method: fb.control('', {
           validators: [Validators.required],
@@ -122,6 +126,7 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
     const response = this.data.response;
 
     this.mockApiForm.patchValue({
+      name: this.data.name,
       request: {
         method: request.method ?? '',
         path: request.path ?? '',
@@ -149,11 +154,25 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
     
     let saveObs$;
 
-    const requestControls = this.mockApiForm.controls.request.controls;
-    const responseControls = this.mockApiForm.controls.response.controls;
+    const formControls = this.mockApiForm.controls;
+    const requestControls = formControls.request.controls;
+    const responseControls = formControls.response.controls;
+
+    console.log(formControls.name.value);
+
+    if (formControls.name.value) {
+      console.log(true);
+    }
+
+    let name = requestControls.path.value;
+
+    if (formControls.name.value) {
+      name = formControls.name.value
+    }
 
     const formValue = {
       id: this.data.id,
+      name: name,
       request: {
         method: requestControls.method.value,
         path: requestControls.path.value,
@@ -171,6 +190,8 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
         body: responseControls.body.value
       }
     } as MockApiDto;
+
+    console.log(formValue);
 
     if (this.data.id) {
       saveObs$ = this.mockApiService.update(
@@ -229,6 +250,7 @@ interface MockApiResponseFormModel {
 }
 
 interface MockApiFormModel {
+  name: FormControl<string>
   request: FormGroup<MockApiRequestFormModel>;
   response: FormGroup<MockApiResponseFormModel>;
 }
