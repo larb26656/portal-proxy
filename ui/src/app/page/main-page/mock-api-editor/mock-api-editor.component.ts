@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CodeModel } from '@ngstack/code-editor';
 import { MockApiDto, createDefaultMockApiDto } from '../../../model/dto/mock-api.dto';
@@ -37,6 +37,10 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
     this.mockApiForm = fb.group<MockApiFormModel>({
       name: fb.control('', {
         validators: [],
+        nonNullable: true,
+      }),
+      isActive: fb.control<boolean>(true, {
+        validators: [Validators.required],
         nonNullable: true,
       }),
       request: fb.group<MockApiRequestFormModel>({
@@ -128,6 +132,7 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
 
     this.mockApiForm.patchValue({
       name: this.data.name,
+      isActive: this.data.isActive,
       request: {
         method: request.method ?? '',
         path: request.path ?? '',
@@ -159,8 +164,6 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
     const requestControls = formControls.request.controls;
     const responseControls = formControls.response.controls;
 
-    console.log(formControls.name.value);
-
     if (formControls.name.value) {
       console.log(true);
     }
@@ -174,6 +177,7 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
     const formValue = {
       id: this.data.id,
       name: name,
+      isActive: formControls.isActive.value,
       request: {
         method: requestControls.method.value,
         path: requestControls.path.value,
@@ -254,7 +258,8 @@ interface MockApiResponseFormModel {
 }
 
 interface MockApiFormModel {
-  name: FormControl<string>
+  name: FormControl<string>;
+  isActive: FormControl<boolean>;
   request: FormGroup<MockApiRequestFormModel>;
   response: FormGroup<MockApiResponseFormModel>;
 }

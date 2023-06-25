@@ -4,12 +4,14 @@ import { MockApiResDto } from "./mock-api-res.dto"
 export interface MockApiDto {
     id?: string
     name: string
+    isActive: boolean
     request: MockApiReqDto
     response: MockApiResDto
 }
 
 export function createDefaultMockApiDto(): MockApiDto {
     return {
+        isActive: true,
         request: {
           method: 'GET',
           path: '',

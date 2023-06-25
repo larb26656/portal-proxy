@@ -41,6 +41,12 @@
         font-size: 16px;
     }
 
+    .text-label-input-inline {
+        @apply text-light font-normal font-sans;
+
+        font-size: 14px;
+    }
+
     .text-label-input {
         @apply text-light font-normal font-sans mb-2;
 
