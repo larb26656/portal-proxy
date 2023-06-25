@@ -2,7 +2,7 @@
   'active': active
 }">
   <div class="flex items-start space-x-2">
-    <p class="text-label flex-auto">{{ data.name }}</p>
+    <div class="text-label flex-auto whitespace-nowrap overflow-hidden text-ellipsis">{{ data.name }}</div>
     <div class="tag tag-primary">
       {{ data.request.method}}
     </div>
