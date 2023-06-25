@@ -39,6 +39,7 @@ export class MockApiService {
                     );
                     
                     entity = {
+                        isActive: true,
                         request: {
                             method: resData.method,
                             path: UrlUtils.extractPathFromURL(resData.url),

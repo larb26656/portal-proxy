@@ -49,8 +49,6 @@ export class ImportMockApiDialogComponent implements OnInit {
           this.notificationService.success('Created.');
           const data = res.data;
 
-          console.log(data);
-
           this.dialogRef.close(data);
         },
         error: (e) => {

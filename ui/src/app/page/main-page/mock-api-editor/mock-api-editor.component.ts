@@ -132,7 +132,7 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
 
     this.mockApiForm.patchValue({
       name: this.data.name,
-      isActive: this.data.isActive,
+      isActive: this.data.isActive ?? true,
       request: {
         method: request.method ?? '',
         path: request.path ?? '',
