@@ -10,6 +10,8 @@ import { MainPageComponent } from './main-page.component';
 import { CodeInputModule } from 'src/app/component/core/input/code-input/code-input.module';
 import { ImportMockApiDialogComponent } from './import-mock-api-dialog/import-mock-api-dialog.component';
 import { DialogModule } from '@angular/cdk/dialog';
+import {CdkMenu, CdkMenuItem, CdkMenuTrigger} from '@angular/cdk/menu';
+import { DeleteRequestDialogComponent } from './delete-request-dialog/delete-request-dialog.component';
 
 @NgModule({
   imports: [
@@ -21,8 +23,11 @@ import { DialogModule } from '@angular/cdk/dialog';
     ReactiveFormsModule,
     FormsModule,
     CodeInputModule,
-    DialogModule
+    DialogModule,
+    CdkMenu, 
+    CdkMenuItem,
+    CdkMenuTrigger
   ],
-  declarations: [MainPageComponent, MockApiEditorComponent, ImportMockApiDialogComponent]
+  declarations: [MainPageComponent, MockApiEditorComponent, ImportMockApiDialogComponent, DeleteRequestDialogComponent]
 })
 export class MainPageModule { }

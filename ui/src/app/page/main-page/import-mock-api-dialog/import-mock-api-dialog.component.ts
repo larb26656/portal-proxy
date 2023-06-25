@@ -16,7 +16,7 @@ export class ImportMockApiDialogComponent implements OnInit {
   readonly importForm: FormGroup<ImportFormModel>
 
   constructor(
-    public dialogRef: DialogRef<string>, 
+    public dialogRef: DialogRef<any>, 
     @Inject(DIALOG_DATA) public data: any,
     private readonly mockApiService: MockApiService,
     private readonly notificationService: NotificationService,

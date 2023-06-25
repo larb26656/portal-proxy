@@ -1,8 +1,8 @@
 @font-face {
     font-family: "portal-proxy-icon";
-    src: url("./portal-proxy-icon.eot?52d2e28a4faed6be57df9429575188a5#iefix") format("embedded-opentype"),
-url("./portal-proxy-icon.woff2?52d2e28a4faed6be57df9429575188a5") format("woff2"),
-url("./portal-proxy-icon.woff?52d2e28a4faed6be57df9429575188a5") format("woff");
+    src: url("./portal-proxy-icon.eot?6caffc9ccc176890069165d54dd4d389#iefix") format("embedded-opentype"),
+url("./portal-proxy-icon.woff2?6caffc9ccc176890069165d54dd4d389") format("woff2"),
+url("./portal-proxy-icon.woff?6caffc9ccc176890069165d54dd4d389") format("woff");
 }
 
 i[class^="pp-i-"]:before, i[class*=" pp-i-"]:before {
@@ -22,9 +22,15 @@ i[class^="pp-i-"]:before, i[class*=" pp-i-"]:before {
 .pp-i-close-solid:before {
     content: "\f102";
 }
-.pp-i-delete-solid:before {
+.pp-i-copy-solid:before {
     content: "\f103";
 }
-.pp-i-git-hub-solid:before {
+.pp-i-delete-solid:before {
     content: "\f104";
+}
+.pp-i-git-hub-solid:before {
+    content: "\f105";
+}
+.pp-i-more-vert-solid:before {
+    content: "\f106";
 }

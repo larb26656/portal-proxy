@@ -6,7 +6,9 @@
     <div class="tag tag-primary">
       {{ data.request.method}}
     </div>
-    <button class="btn btn-sm btn-text" *ngIf="active" (click)="onDeleteClick()"><i class="pp-i pp-i-delete-solid"></i></button>
+    <ng-container *ngIf="active && activeActions != null">
+      <ng-container [ngTemplateOutlet]="activeActions"></ng-container>
+    </ng-container>
   </div>
   <p class="text-placeholder">{{ data.request.description }}</p>
 </div>

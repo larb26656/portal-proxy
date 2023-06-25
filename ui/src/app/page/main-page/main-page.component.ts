@@ -8,6 +8,8 @@ import {Dialog, DialogRef, DIALOG_DATA, DialogModule} from '@angular/cdk/dialog'
 import { ImportMockApiDialogComponent } from './import-mock-api-dialog/import-mock-api-dialog.component';
 import { read } from 'fs';
 import { ErrorHandlerUtils } from 'src/app/utils/error-handler-utils';
+import { mock } from 'node:test';
+import { DeleteRequestDialogComponent } from './delete-request-dialog/delete-request-dialog.component';
 
 @Component({
   selector: 'app-main-page',
@@ -83,41 +85,40 @@ export class MainPageComponent implements OnInit {
     });
     
     dialogRef.closed.subscribe(result => {
-    
       if (result) {
         const data = result as MockApiDto;
 
         this.add(data);
       }
-      
-    });
-  }
-
-  delete(id: string) {
-    this.notificationService.startSpinner();
-
-    this.mockApiService.remove(id).pipe(
-      finalize(() => this.notificationService.stopSpinner())
-    )
-    .subscribe({
-      next: () => {
-        this.onMockApiSelect(undefined);
-        this.fetchInitData();
-      },
-      error: (e) => {
-        console.log(`Error: ${e}`);
-      }
     });
   }
 
   onDelete(mockApi: MockApiDto) {
-    // TODO add dialog
+    const dialogRef = this.dialog.open(DeleteRequestDialogComponent, {
+      height: '400px',
+      width: '330px',
+      panelClass: 'my-dialog',
+      data: mockApi
+    });
+    
+    dialogRef.closed.subscribe(result => {
+      if (result) {
+        this.onMockApiSelect(undefined);
+        this.fetchInitData();
+      }
+    });
+  }
 
-    const id = mockApi.id;
+  copy(mockApi: MockApiDto) {
+    const newDto = JSON.parse(JSON.stringify(mockApi));
 
-    if (id) {
-      this.delete(id);
-    }
+    delete newDto.id;
+
+    this.onMockApiSelect(newDto);
+  }
+
+  onCopy(mockApi: MockApiDto) {
+    this.copy(mockApi);
   }
 
 }

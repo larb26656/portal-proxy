@@ -9,7 +9,7 @@
 @layer base {
   /* width */
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
   }
   
   /* Track */
@@ -109,8 +109,18 @@
             @apply bg-transparent text-light;
         }
     }
-    
 
+    // menu
+    .menu {
+        @apply flex flex-col;
+
+        width: 150px;
+
+        .menu-item {
+            @apply p-2 text-btn-label text-light text-start bg-bg;
+        }
+    }
+    
     // tag
     .tag {
         @apply py-1 px-2 text-tag-label;

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { MockApiDto, createDefaultMockApiDto } from 'src/app/model/dto/mock-api.dto';
 
 @Component({
@@ -17,8 +17,8 @@ export class RequestCardComponent implements OnInit {
   @Output()
   cardClick = new EventEmitter<MockApiDto>();
 
-  @Output()
-  deleteClick = new EventEmitter<MockApiDto>();
+  @ContentChild('activeActions', { static: true })
+  activeActions?: TemplateRef<any>;
 
   constructor() { }
 
@@ -27,10 +27,6 @@ export class RequestCardComponent implements OnInit {
 
   onClick() {
     this.cardClick.emit(this.data);
-  }
-
-  onDeleteClick() {
-    this.deleteClick.emit(this.data);
   }
 
 }
