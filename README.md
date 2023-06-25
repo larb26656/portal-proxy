@@ -1,8 +1,11 @@
 # Portal-proxy
 
-![logo](readme-assets/logo.png)
 
-## Portal-proxy : interceptor reverse proxy tool
+<p align="center">
+  <img src="readme-assets/logo.png" width="350px" alt="logo"/>
+</p>
+
+## Portal-proxy : Proxy gateway tool
 
 Portal proxy คือ Proxy gateway ที่สามารถ Mock API Response ได้ไม่ว่าจะเป็น Status code, Delay, Body และ Content type เพื่อทำการจำลอง Situation ในการเรียก API ในฝั่ง Front-end ในหลายๆ Situation เช่น Success และ Fail เป็นต้น ในขณะเดียวกัน Portal proxy สามารถทำเป็น Reverse proxy ได้ด้วย ทำให้สามารถใช้ Reverse proxy ควบคู่ไปกับการ Mock API Response บาง API ได้
 
