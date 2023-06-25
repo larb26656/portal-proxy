@@ -2,7 +2,9 @@
   'active': active
 }">
   <div class="flex items-start space-x-2">
-    <div class="text-label flex-auto whitespace-nowrap overflow-hidden text-ellipsis">{{ data.name }}</div>
+    <div class="text-label flex-auto whitespace-nowrap overflow-hidden text-ellipsis" [ngClass]="{
+      'line-through': !data.isActive
+    }">{{ data.name }}</div>
     <div class="tag tag-primary">
       {{ data.request.method}}
     </div>
