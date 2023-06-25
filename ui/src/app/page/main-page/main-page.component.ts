@@ -4,6 +4,10 @@ import { DataLoaderData } from 'src/app/component/core/data-loader/model/data-lo
 import { MockApiDto, createDefaultMockApiDto } from 'src/app/model/dto/mock-api.dto';
 import { MockApiService } from 'src/app/service/mock-api/mock-api.service';
 import { NotificationService } from 'src/app/service/notification/notification.service';
+import {Dialog, DialogRef, DIALOG_DATA, DialogModule} from '@angular/cdk/dialog';
+import { ImportMockApiDialogComponent } from './import-mock-api-dialog/import-mock-api-dialog.component';
+import { read } from 'fs';
+import { ErrorHandlerUtils } from 'src/app/utils/error-handler-utils';
 
 @Component({
   selector: 'app-main-page',
@@ -21,7 +25,7 @@ export class MainPageComponent implements OnInit {
 
   mockApiData?: MockApiDto;
 
-  constructor(private readonly mockApiService: MockApiService, private readonly notificationService: NotificationService) { }
+  constructor(private readonly mockApiService: MockApiService, private readonly notificationService: NotificationService, public dialog: Dialog) { }
 
   ngOnInit() {
     this.fetchInitData();
@@ -49,18 +53,44 @@ export class MainPageComponent implements OnInit {
         this.fetchMockApiDataLoader.setIdle(data);
         this.updateMockApiDataList();
       },
-      error: err => {
-        const msg = err.message;
+      error: e => {
+        const msg = ErrorHandlerUtils.getMsg(e);
 
         this.fetchMockApiDataLoader.setFail(msg);
       },
     });
   }
 
-  onAdd() {
-    const newData = createDefaultMockApiDto();
+  add(mockApi?: MockApiDto) {
+    let newData = mockApi;
+
+    if (!newData) {
+      newData = createDefaultMockApiDto();
+    }
 
     this.onMockApiSelect(newData);
+  }
+
+  onAdd() {
+    this.add();
+  }
+
+  onImport() {
+    const dialogRef = this.dialog.open(ImportMockApiDialogComponent, {
+      height: '400px',
+      width: '600px',
+      panelClass: 'my-dialog',
+    });
+    
+    dialogRef.closed.subscribe(result => {
+    
+      if (result) {
+        const data = result as MockApiDto;
+
+        this.add(data);
+      }
+      
+    });
   }
 
   delete(id: string) {

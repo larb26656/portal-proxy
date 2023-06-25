@@ -6,6 +6,7 @@ import { NotificationService } from '../../../service/notification/notification.
 import { MockApiService } from 'src/app/service/mock-api/mock-api.service';
 import { finalize } from 'rxjs';
 import { MainPageComponent } from '../main-page.component';
+import { ErrorHandlerUtils } from 'src/app/utils/error-handler-utils';
 
 @Component({
   selector: 'app-mock-api-editor',
@@ -207,6 +208,7 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
       finalize(() => this.notificationService.stopSpinner())
     ).subscribe({
       next: res => {
+        this.notificationService.success('Saved.');
         const data = res.data;
 
         // set new data
@@ -216,7 +218,9 @@ export class MockApiEditorComponent implements OnInit, OnChanges {
         this.mainPageComponent.fetchInitData();
       },
       error: (e) => {
-        console.log(`Error: ${e}`);
+        const msg = ErrorHandlerUtils.getMsg(e);
+
+        this.notificationService.error(msg);
       }
     });
   }

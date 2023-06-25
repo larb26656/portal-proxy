@@ -8,6 +8,8 @@ import { MockApiEditorComponent } from './mock-api-editor/mock-api-editor.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainPageComponent } from './main-page.component';
 import { CodeInputModule } from 'src/app/component/core/input/code-input/code-input.module';
+import { ImportMockApiDialogComponent } from './import-mock-api-dialog/import-mock-api-dialog.component';
+import { DialogModule } from '@angular/cdk/dialog';
 
 @NgModule({
   imports: [
@@ -18,8 +20,9 @@ import { CodeInputModule } from 'src/app/component/core/input/code-input/code-in
     DataLoaderModule,
     ReactiveFormsModule,
     FormsModule,
-    CodeInputModule
+    CodeInputModule,
+    DialogModule
   ],
-  declarations: [MainPageComponent, MockApiEditorComponent]
+  declarations: [MainPageComponent, MockApiEditorComponent, ImportMockApiDialogComponent]
 })
 export class MainPageModule { }

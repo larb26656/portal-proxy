@@ -2,6 +2,7 @@
   <div class="bg-bg h-full border-r border-r-bg-highlight flex flex-col overflow-y-auto" style="width: 265px;">
     <div class="flex p-2 space-x-2">
       <input type="text" class="flex-auto input-center" placeholder="Search" [(ngModel)]="searchKeyword" (ngModelChange)="onSearchChange()"/>
+      <button type="button" class="btn btn-xs btn-text" (click)="onImport()">I</button>
       <button type="button" class="btn btn-secondary" (click)="onAdd()"><i class="pp-i pp-i-add-solid"></i></button>
     </div>
     <app-data-loader class="flex-auto" [data]="fetchMockApiDataLoader">

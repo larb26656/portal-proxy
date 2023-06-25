@@ -1,5 +1,4 @@
 export interface MockApiReqEntity {
-    name: string;
     method: string
     path: string
     description?: string

@@ -14,6 +14,14 @@ export class MockApiService {
 
   constructor(private readonly http: HttpClient) { }
 
+  createDraftByCurl(curl: string) {
+    const url = `${this.baseUrl}/api/mock-api/v1/draft/curl`;
+
+    return this.http.post<any>(url, {
+      curl: curl
+    });
+  }
+
   create(addReq: MockApiDto) {
     const url = `${this.baseUrl}/api/mock-api/v1`;
 

@@ -1,0 +1,15 @@
+<form
+#form="ngForm"
+(ngSubmit)="onImport()"
+[formGroup]="importForm"
+>
+  <div class="flex flex-col space-y-3">
+    <p class="text-topic mb-2">Import by crul</p>
+    <p class="text-label-input">Curl</p>
+    <textarea class="input flex-auto" rows="4" formControlName="curl"></textarea>
+    <div class="flex justify-end space-x-3">
+      <button type="submit" class="btn btn-primary" (click)="form.onSubmit($event)">Import</button>
+      <button type="button" class="btn btn-text" (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</form>

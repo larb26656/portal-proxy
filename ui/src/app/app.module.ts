@@ -12,6 +12,7 @@ import { CodeEditorModule } from '@ngstack/code-editor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoaderModule } from './component/core/loader/loader.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CodeEditorModule.forRoot(),
     ReactiveFormsModule,
     LoaderModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [
         NotificationService, ],
