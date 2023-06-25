@@ -1,73 +1,97 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Portal-proxy
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![logo](readme-assets/logo.png)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Portal-proxy : interceptor reverse proxy tool
 
-## Description
+Portal proxy คือ Proxy gateway ที่สามารถ Mock API Response ได้ไม่ว่าจะเป็น Status code, Delay, Body และ Content type เพื่อทำการจำลอง Situation ในการเรียก API ในฝั่ง Front-end ในหลายๆ Situation เช่น Success และ Fail เป็นต้น ในขณะเดียวกัน Portal proxy สามารถทำเป็น Reverse proxy ได้ด้วย ทำให้สามารถใช้ Reverse proxy ควบคู่ไปกับการ Mock API Response บาง API ได้
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tech stack
 
-## Installation
+### Front-end
+- Tailwind css
+- Angular
 
-```bash
-$ npm install
+### Back-end
+- Node.js
+- Nest JS
+
+## Core concept
+
+Concept หลักในการทำงานของ Portal proxy หลังจากได้รับ Request จะทำงานตาม Flow chart ดังนี้ไปนี้
+
+```mermaid
+flowchart TD
+  Start --> revceiveReq[Receive request]
+	revceiveReq --> checkInMockAPI{Check is in mock API data}
+	checkInMockAPI -- yes --> returnMock[Return mock API response]
+	returnMock --> END
+	checkInMockAPI -- no --> checkInProxy{Check is in mock API data}
+	checkInProxy -- yes --> forwardToProxy[Forward to proxy]
+	forwardToProxy --> END
+	checkInProxy -- no --> invokeRouteInNestJs[Invoke route nest js]
+	invokeRouteInNestJs --> END
+	
 ```
 
-## Running the app
+## Config file
 
-```bash
-# development
-$ npm run start
+การตั้งค่าโปรแกรม Portal proxy จะประกอบไปด้วย 2 ไฟล์ตั้งนี้
 
-# watch mode
-$ npm run start:dev
+### proxy.json
 
-# production mode
-$ npm run start:prod
-```
+เป็น File ที่เก็บข้อมูลการตั้งค่า Reverse proxy โดยอิงตาม Standard ของ Package ดังต่อไปนี้ [https://www.npmjs.com/package/http-proxy-middleware](https://www.npmjs.com/package/http-proxy-middleware)
 
-## Test
+> โดยสามารถดูตัวอย่างการตั้งค่าได้ใน path example-config/proxy.json
 
-```bash
-# unit tests
-$ npm run test
+### mock-api.json
 
-# e2e tests
-$ npm run test:e2e
+เป็น File ที่เก็บข้อมูลการตั้งค่า Mock API โดยในไฟล์นี้แนะนำในแก้ไขผ่าน UI
 
-# test coverage
-$ npm run test:cov
-```
+# UI
 
-## Support
+Portal proxy มี Part ของ UI เพื่อให้ทำการ Setting ค่า Mock API ได้ใน Runtime โดยวิธีเข้าใช้งานให้ไปที่ URL ดังต่อไปนี้ 
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+> {{basePath}}/ui
+> 
 
-## Stay in touch
+![ui-overview](readme-assets/ui-overview.png)
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+จากภาพจะเห็นได้ว่ามี Form ที่ประกอบด้วยกัน 2 ส่วนได้แก่
 
-## License
+## Request
 
-Nest is [MIT licensed](LICENSE).
+เป็นส่วนที่ใช้ Set เงื่อนไขการ Mock API
+
+![ui-request-part](readme-assets/ui-request-part.png)
+
+โดยจะมี Field ต่างๆ ดังต่อไปนี้
+
+| Field | Meaning |
+| --- | --- |
+| Name | ชื่อ Mock api ถ้าไม่ใส่ข้อมูลระบบจะนำชื่อ Path มาตั้งชื่อ |
+| Method | HTTP Method ที่ใช้ในการเรียก API |
+| Path | Path ที่ใช้ในการเรียก API |
+| Active | การเปิดการใช้งาน Mock api สำหรับ เส้น API นี้ |
+| Description | คำอธิบายเพิ่มเติม |
+| Strict content-type | กำหนด เงื่อนไขให้ Request ที่เข้ามาต้องมี Content-type ดังต่อไปนี้ ถึงจะเข้าเงื่อนไขการเรียกใช้งาน Mock API |
+| Strict body | กำหนด เงื่อนไขให้ Request ที่เข้ามาต้องมี Body ดังต่อไปนี้ ถึงจะเข้าเงื่อนไขการเรียกใช้งาน Mock API |
+
+## Reponse
+
+เป็นส่วนที่ใช้ Set Response ของ Mock API
+
+![ui-response-part](readme-assets/ui-response-part.png)
+
+| Field | Meaning |
+| --- | --- |
+| Delay (sec) | เวลาหน่วย วินาที ก่อนที่ Reponse จะ Return |
+| Status code | HTTP status code ที่ต้องการ Return |
+| Content-type | Content-type ที่ต้องการ Return |
+| body | Body ที่ต้องการ Return |
+
+## Import by curl
+
+เป็น Feature ที่ช่วยในการสร้างข้อมูลการ Mock API ด้วย cURL โดยจะช่วยให้การสร้างการ Mock API สะดวกมากยิ่งขึ้น
+
+![ui-import-by-curl](readme-assets/ui-import-by-curl.png)
