@@ -26,10 +26,10 @@ Concept หลักในการทำงานของ Portal proxy หล�
 ```mermaid
 flowchart TD
   Start --> revceiveReq[Receive request]
-	revceiveReq --> checkInMockAPI{Check is in mock API data}
+	revceiveReq --> checkInMockAPI{Check is in mock API config}
 	checkInMockAPI -- yes --> returnMock[Return mock API response]
 	returnMock --> END
-	checkInMockAPI -- no --> checkInProxy{Check is in mock API data}
+	checkInMockAPI -- no --> checkInProxy{Check is in proxy config}
 	checkInProxy -- yes --> forwardToProxy[Forward to proxy]
 	forwardToProxy --> END
 	checkInProxy -- no --> invokeRouteInNestJs[Invoke route nest js]
