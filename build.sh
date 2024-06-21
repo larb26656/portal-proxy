@@ -1,5 +1,6 @@
 # build UI
 cd ui/
+npm i
 npm run build:prod
 cd ..
 
@@ -10,4 +11,5 @@ rm -rf ui-assets
 cp -R ui/dist/protal-proxy-ui ui-assets
 
 # build core
+npm i
 npm run build

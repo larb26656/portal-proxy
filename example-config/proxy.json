@@ -1,6 +1,6 @@
 {
   "/service": {
-      "target": "http://www.example.org",
-      "changeOrigin": true
+    "target": "http://www.example.org",
+    "changeOrigin": true
   }
 }
