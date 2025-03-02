@@ -7,9 +7,10 @@ import { NotificationService } from 'src/app/service/notification/notification.s
 import { ErrorHandlerUtils } from 'src/app/utils/error-handler-utils';
 
 @Component({
-  selector: 'app-import-mock-api-dialog',
-  templateUrl: './import-mock-api-dialog.component.html',
-  styleUrls: ['./import-mock-api-dialog.component.scss']
+    selector: 'app-import-mock-api-dialog',
+    templateUrl: './import-mock-api-dialog.component.html',
+    styleUrls: ['./import-mock-api-dialog.component.scss'],
+    standalone: false
 })
 export class ImportMockApiDialogComponent implements OnInit {
 

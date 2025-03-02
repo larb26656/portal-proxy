@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-fail-detail',
-  templateUrl: './fail-detail.component.html',
-  styleUrls: ['./fail-detail.component.scss'],
+    selector: 'app-fail-detail',
+    templateUrl: './fail-detail.component.html',
+    styleUrls: ['./fail-detail.component.scss'],
+    standalone: false
 })
 export class FailDetailComponent implements OnInit {
   @Input()

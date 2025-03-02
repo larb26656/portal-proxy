@@ -4,16 +4,17 @@ import { CodeModel } from '@ngstack/code-editor';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
-  selector: 'code-input',
-  templateUrl: './code-input.component.html',
-  styleUrls: ['./code-input.component.scss'], 
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CodeInputComponent),
-      multi: true
-    }
-  ]
+    selector: 'code-input',
+    templateUrl: './code-input.component.html',
+    styleUrls: ['./code-input.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => CodeInputComponent),
+            multi: true
+        }
+    ],
+    standalone: false
 })
 export class CodeInputComponent implements ControlValueAccessor {
 

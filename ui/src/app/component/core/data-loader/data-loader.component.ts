@@ -3,9 +3,10 @@ import { DataLoaderData } from './model/data-loader-data';
 import { DataLoaderStatus } from './model/data-loader-status';
 
 @Component({
-  selector: 'app-data-loader',
-  templateUrl: './data-loader.component.html',
-  styleUrls: ['./data-loader.component.scss'],
+    selector: 'app-data-loader',
+    templateUrl: './data-loader.component.html',
+    styleUrls: ['./data-loader.component.scss'],
+    standalone: false
 })
 export class DataLoaderComponent implements OnInit {
   @ContentChild('idlePage', { static: true }) idlePage?: TemplateRef<any>;

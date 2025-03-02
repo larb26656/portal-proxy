@@ -9,9 +9,10 @@ import { MainPageComponent } from '../main-page.component';
 import { ErrorHandlerUtils } from 'src/app/utils/error-handler-utils';
 
 @Component({
-  selector: 'app-mock-api-editor',
-  templateUrl: './mock-api-editor.component.html',
-  styleUrls: ['./mock-api-editor.component.scss']
+    selector: 'app-mock-api-editor',
+    templateUrl: './mock-api-editor.component.html',
+    styleUrls: ['./mock-api-editor.component.scss'],
+    standalone: false
 })
 export class MockApiEditorComponent implements OnInit, OnChanges {
   @Input() data: MockApiDto = createDefaultMockApiDto();

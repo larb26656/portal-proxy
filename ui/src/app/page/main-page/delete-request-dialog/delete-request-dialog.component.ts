@@ -6,9 +6,10 @@ import { NotificationService } from 'src/app/service/notification/notification.s
 import { ErrorHandlerUtils } from 'src/app/utils/error-handler-utils';
 
 @Component({
-  selector: 'app-delete-request-dialog',
-  templateUrl: './delete-request-dialog.component.html',
-  styleUrls: ['./delete-request-dialog.component.scss']
+    selector: 'app-delete-request-dialog',
+    templateUrl: './delete-request-dialog.component.html',
+    styleUrls: ['./delete-request-dialog.component.scss'],
+    standalone: false
 })
 export class DeleteRequestDialogComponent implements OnInit {
 

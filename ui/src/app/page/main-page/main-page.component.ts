@@ -12,9 +12,10 @@ import { mock } from 'node:test';
 import { DeleteRequestDialogComponent } from './delete-request-dialog/delete-request-dialog.component';
 
 @Component({
-  selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.scss']
+    selector: 'app-main-page',
+    templateUrl: './main-page.component.html',
+    styleUrls: ['./main-page.component.scss'],
+    standalone: false
 })
 export class MainPageComponent implements OnInit {
   fetchMockApiDataLoader: DataLoaderData<MockApiDto[]> = new DataLoaderData();

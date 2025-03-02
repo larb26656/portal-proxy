@@ -2,9 +2,10 @@ import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateR
 import { MockApiDto, createDefaultMockApiDto } from 'src/app/model/dto/mock-api.dto';
 
 @Component({
-  selector: 'app-request-card',
-  templateUrl: './request-card.component.html',
-  styleUrls: ['./request-card.component.scss']
+    selector: 'app-request-card',
+    templateUrl: './request-card.component.html',
+    styleUrls: ['./request-card.component.scss'],
+    standalone: false
 })
 export class RequestCardComponent implements OnInit {
 

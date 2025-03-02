@@ -34,4 +34,4 @@ WORKDIR /app
 
 # Copy the built `dist/` folder from the builder stage
 COPY --from=builder-core-service /app/package ./dist
-COPY --from=builder-ui /app/dist/protal-proxy-ui ./dist/ui-assets
+COPY --from=builder-ui /app/dist/protal-proxy-ui/browser ./dist/ui-assets
