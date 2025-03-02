@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { MockApiDto } from 'src/app/model/dto/mock-api.dto';
 import { environment } from 'src/environments/environment';
 
