@@ -10,7 +10,7 @@ import { join } from 'path';
   imports: [
       MockApiModule,
       ServeStaticModule.forRoot({
-            rootPath: join(__dirname, '..', 'ui-assets'),
+            rootPath: join(__dirname, 'ui-assets'),
             serveRoot: '/ui',
             exclude: ['/api/(.*)'],
       }),

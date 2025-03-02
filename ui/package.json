@@ -23,8 +23,11 @@
     "@angular/platform-browser-dynamic": "^16.1.2",
     "@angular/router": "^16.1.2",
     "@ngstack/code-editor": "^5.0.0",
+    "@tailwindcss/postcss": "^4.0.9",
     "fantasticon": "^2.0.0",
+    "postcss": "^8.5.3",
     "rxjs": "~7.5.0",
+    "tailwindcss": "^4.0.9",
     "tslib": "^2.3.0",
     "uuid": "^9.0.0",
     "zone.js": "~0.13.1"

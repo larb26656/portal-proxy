@@ -1,17 +1,37 @@
-# Use an official Node.js runtime as the base image
-FROM node:20
+# ---- Phase 1: Build the NestJS library ----
+FROM node:20 AS builder-core-service
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the rest of the application code to the working directory
-COPY . .
+COPY ./core-service/package*.json ./
 
-# Install the app dependencies
-RUN sh build.sh
+RUN npm install
 
-# Expose the port the app runs on
-EXPOSE 3000
+COPY ./core-service .
 
-# Define the command to run the application
-CMD ["node", "dist/src/main.js"]
+RUN npm i -g @vercel/ncc
+
+RUN npm run build
+RUN npm run package
+
+# ---- Phase 1: Build the UI ----
+FROM node:20 AS builder-ui
+
+WORKDIR /app
+
+COPY ./ui/package*.json ./
+
+RUN npm install
+
+COPY ./ui .
+
+RUN npm run build
+
+# ---- Phase 2: Output only the built artifacts ----
+FROM node:20
+
+WORKDIR /app
+
+# Copy the built `dist/` folder from the builder stage
+COPY --from=builder-core-service /app/package ./dist
+COPY --from=builder-ui /app/dist/protal-proxy-ui ./dist/ui-assets

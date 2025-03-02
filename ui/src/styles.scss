@@ -1,151 +1,150 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
+@import "tailwindcss";
 
 @layer base {
   /* width */
   ::-webkit-scrollbar {
     width: 5px;
   }
-  
+
   /* Track */
   ::-webkit-scrollbar-track {
     @apply bg-bg;
   }
-   
+
   /* Handle */
   ::-webkit-scrollbar-thumb {
     @apply bg-bg-highlight-l;
   }
-  
+
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-secondary;
   }
 }
 @layer components {
-    // typography
-    .text-topic {
-        @apply text-light font-bold font-sans;
+  // typography
+  .text-topic {
+    @apply text-light font-bold font-sans;
 
-        font-size: 24px;
+    font-size: 24px;
+  }
+
+  .text-label {
+    @apply text-light font-normal font-sans;
+
+    font-size: 16px;
+  }
+
+  .text-label-input-inline {
+    @apply text-light font-normal font-sans;
+
+    font-size: 14px;
+  }
+
+  .text-label-input {
+    @apply text-light font-normal font-sans mb-2;
+
+    font-size: 14px;
+  }
+
+  .text-input {
+    @apply text-light font-normal font-sans;
+
+    font-size: 14px;
+  }
+
+  .text-placeholder {
+    @apply text-bg-highlight-l font-normal font-sans;
+
+    font-size: 14px;
+  }
+
+  .text-tag-label {
+    @apply text-dark font-bold font-sans;
+
+    font-size: 12px;
+  }
+
+  .text-btn-label {
+    @apply text-dark font-normal font-sans;
+
+    font-size: 14px;
+  }
+  // input
+  .input {
+    @apply bg-bg-highlight text-input placeholder:text-placeholder p-2;
+
+    &.ng-invalid.ng-touched {
+      @apply border border-danger;
+    }
+  }
+
+  .input-center {
+    @apply bg-bg-highlight text-input placeholder:text-placeholder text-center p-2;
+
+    &.ng-invalid.ng-touched {
+      @apply border border-danger;
+    }
+  }
+
+  // btn
+  .btn {
+    @apply p-2 text-btn-label;
+
+    border-radius: 5px;
+
+    &.btn-sm {
+      @apply p-1;
     }
 
-    .text-label {
-        @apply text-light font-normal font-sans;
-
-        font-size: 16px;
+    &.btn-primary {
+      @apply bg-primary disabled:bg-bg-highlight-l;
     }
 
-    .text-label-input-inline {
-        @apply text-light font-normal font-sans;
-
-        font-size: 14px;
+    &.btn-secondary {
+      @apply bg-secondary disabled:bg-bg-highlight-l;
     }
 
-    .text-label-input {
-        @apply text-light font-normal font-sans mb-2;
-
-        font-size: 14px;
+    &.btn-text {
+      @apply bg-transparent text-light;
     }
+  }
 
-    .text-input {
-        @apply text-light font-normal font-sans;
+  // menu
+  .menu {
+    @apply flex flex-col;
 
-        font-size: 14px;
+    width: 150px;
+
+    .menu-item {
+      @apply p-2 text-btn-label text-light text-start bg-bg;
     }
+  }
 
-    .text-placeholder {
-        @apply text-bg-highlight-l font-normal font-sans;
-        
-        font-size: 14px;
+  // tag
+  .tag {
+    @apply py-1 px-2 text-tag-label;
+
+    border-radius: 5px;
+
+    &.tag-primary {
+      @apply bg-primary;
     }
+  }
 
-    .text-tag-label {
-        @apply text-dark font-bold font-sans;
+  // notify
+  // .notify-success {
+  //     background-color: green;
+  // }
 
-        font-size: 12px;
-    }
-
-    .text-btn-label {
-        @apply text-dark font-normal font-sans;
-
-        font-size: 14px;
-    }
-    // input
-    .input {
-        @apply bg-bg-highlight text-input placeholder:text-placeholder p-2;
-
-        &.ng-invalid.ng-touched {
-            @apply border border-danger;
-        }
-    }
-
-    .input-center {
-        @apply bg-bg-highlight text-input placeholder:text-placeholder text-center p-2 ;
-
-        &.ng-invalid.ng-touched {
-            @apply border border-danger;
-        }
-    }
-
-    // btn
-    .btn {
-        @apply p-2 text-btn-label;
-
-        border-radius: 5px;
-
-        &.btn-sm {
-            @apply p-1
-        }
-
-        &.btn-primary{
-            @apply bg-primary disabled:bg-bg-highlight-l;
-        }
-
-        &.btn-secondary {
-            @apply bg-secondary disabled:bg-bg-highlight-l;
-        }
-
-        &.btn-text {
-            @apply bg-transparent text-light;
-        }
-    }
-
-    // menu
-    .menu {
-        @apply flex flex-col;
-
-        width: 150px;
-
-        .menu-item {
-            @apply p-2 text-btn-label text-light text-start bg-bg;
-        }
-    }
-    
-    // tag
-    .tag {
-        @apply py-1 px-2 text-tag-label;
-
-        border-radius: 5px;
-
-        &.tag-primary {
-            @apply bg-primary;
-        }
-    }
-
-    // notify
-    // .notify-success {
-    //     background-color: green;
-    // }
-
-    // .notify-error {
-    //     background-color: red;
-    // }
+  // .notify-error {
+  //     background-color: red;
+  // }
 }
 
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}

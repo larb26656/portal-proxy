@@ -1,15 +1,6 @@
-# build UI
-cd ui/
-npm i
-npm run build:prod
-cd ..
-
-# clear previous build
-rm -rf ui-assets
-# mkdir ui-assets
-
-cp -R ui/dist/protal-proxy-ui ui-assets
-
-# build core
-npm i
-npm run build
+docker build -t portal-proxy .
+docker create --name portal-proxy-container portal-proxy
+# clear old output
+rm -rf ./output
+docker cp portal-proxy-container:/app/dist ./output
+docker rm portal-proxy-container
