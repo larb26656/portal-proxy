@@ -9,6 +9,7 @@
     "copy:ui-assets": "rm -rf dist/ui-assets && cp -R ui-assets dist/ui-assets",
     "prebuild": "rimraf dist",
     "build": "nest build",
+    "postbuild": "npm run ci:generate-verison",
     "package": "ncc build dist/main.js -o package",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",

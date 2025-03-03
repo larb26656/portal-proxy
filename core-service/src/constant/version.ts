@@ -1,0 +1,2 @@
+export const APP_VERSION = "<APP_VERSION>";
+export const APP_VERSION_COMMIT_HASH = "<APP_VERSION_COMMIT_HASH>";

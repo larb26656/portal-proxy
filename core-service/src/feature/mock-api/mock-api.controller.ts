@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/
 import { MockApiEntity } from 'src/entity/mock-api.entity';
 import { MockApiService } from './mock-api.service';
 import { ApiResponseUtils } from 'src/utils/api-response-utils';
-import { CreateDraftByCurlReqDto } from './model/create-draft-by-curl-req.dto';
+import { CreateDraftByCurlReqDto } from './dto/create-draft-by-curl-req.dto';
 
 @Controller('api/mock-api/v1')
 export class MockApiController {

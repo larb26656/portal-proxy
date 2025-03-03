@@ -3,7 +3,8 @@ const path = require('path');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
-const packageJsonPath = path.join(__dirname, '..', 'package.json');
+const packageJsonFilePath = path.join(__dirname, '..', 'package.json');
+const versionFilePath = path.join(__dirname, '..', 'dist/constant/version.js');
 
 async function getCommitHash() {
   try {
@@ -25,13 +26,28 @@ async function getDataFromPackage(packageJsonPath) {
   return data;
 }
 
-async function writeFile(outputPath, data) {
-  await fs.writeFile(outputPath, JSON.stringify(data, null, 2), 'utf8');
+async function replaceInFile(filePath, replacements) {
+  let content = await fs.readFile(filePath, 'utf8');
+
+  for (const [key, value] of Object.entries(replacements)) {
+    content = content.replace(new RegExp(key, 'g'), value);
+  }
+
+  await fs.writeFile(filePath, content, 'utf8');
+}
+
+async function patchVersionFile(filePath, data) {
+  const replacements = {
+    '<APP_VERSION>': data.version,
+    '<APP_VERSION_COMMIT_HASH>': data.commitHash,
+  };
+
+  await replaceInFile(filePath, replacements);
 }
 
 async function main() {
   try {
-    const { version } = await getDataFromPackage(packageJsonPath);
+    const { version } = await getDataFromPackage(packageJsonFilePath);
     const data = {
       version,
     };
@@ -39,10 +55,8 @@ async function main() {
     const commitHash = await getCommitHash();
     data.commitHash = commitHash;
 
-    const outputPath = path.join(__dirname, '..', 'version.json');
-
-    writeFile(outputPath, data);
-    console.log('version.json file has been created successfully');
+    await patchVersionFile(versionFilePath, data);
+    console.log('Patch version successfully');
   } catch (err) {
     console.error('Error processing files:', err);
   }
