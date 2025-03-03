@@ -1,13 +1,16 @@
 # Portal-proxy
 
-
 <p align="center">
   <img src="readme-assets/logo.png" width="350px" alt="logo"/>
 </p>
 
 ## Portal-proxy : Proxy gateway tool
 
-Portal proxy คือ Proxy gateway ที่สามารถ Mock API Response ได้ไม่ว่าจะเป็น Status code, Delay, Body และ Content type เพื่อทำการจำลอง Situation ในการเรียก API ในฝั่ง Front-end ในหลายๆ Situation เช่น Success และ Fail เป็นต้น ในขณะเดียวกัน Portal proxy สามารถทำเป็น Reverse proxy ได้ด้วย ทำให้สามารถใช้ Reverse proxy ควบคู่ไปกับการ Mock API Response บาง API ได้
+Portal-proxy is a proxy gateway that allows you to mock API responses, including status codes, delays, response bodies, and content types. This enables front-end developers to simulate various API scenarios, such as successful responses and failures, without depending on a real backend.
+
+Additionally, Portal-proxy can function as a reverse proxy, allowing you to mock some API responses while forwarding other requests to actual backend services.
+
+> The name "Portal" was inspired by the game Portal, symbolizing the idea of seamlessly transporting requests between different endpoints.
 
 ## Tech stack
 
@@ -21,7 +24,7 @@ Portal proxy คือ Proxy gateway ที่สามารถ Mock API Respon
 
 ## Core concept
 
-Concept หลักในการทำงานของ Portal proxy หลังจากได้รับ Request จะทำงานตาม Flow chart ดังนี้ไปนี้
+The main concept of Portal-proxy is based on the following request-handling flow:
 
 ```mermaid
 flowchart TD
@@ -39,62 +42,60 @@ flowchart TD
 
 ## Config file
 
-การตั้งค่าโปรแกรม Portal proxy จะประกอบไปด้วย 2 ไฟล์ตั้งนี้
+Portal-proxy requires two main configuration files:
 
 ### proxy.json
 
-เป็น File ที่เก็บข้อมูลการตั้งค่า Reverse proxy โดยอิงตาม Standard ของ Package ดังต่อไปนี้ [https://www.npmjs.com/package/http-proxy-middleware](https://www.npmjs.com/package/http-proxy-middleware)
+This file stores reverse proxy settings and follows the standard format of the [http-proxy-middleware](https://www.npmjs.com/package/http-proxy-middleware)
 
-> โดยสามารถดูตัวอย่างการตั้งค่าได้ใน path example-config/proxy.json
+> Example configurations can be found in example-config/proxy.json.
 
 ### mock-api.json
 
-เป็น File ที่เก็บข้อมูลการตั้งค่า Mock API โดยในไฟล์นี้แนะนำในแก้ไขผ่าน UI
+This file contains mock API configurations, which can be modified through the Portal-proxy UI for easier management.
 
 # UI
 
-Portal proxy มี Part ของ UI เพื่อให้ทำการ Setting ค่า Mock API ได้ใน Runtime โดยวิธีเข้าใช้งานให้ไปที่ URL ดังต่อไปนี้ 
+Portal-proxy provides a UI for real-time mock API configuration. You can access it at:
 
 > {{basePath}}/ui
-> 
 
 ![ui-overview](readme-assets/ui-overview.png)
 
-จากภาพจะเห็นได้ว่ามี Form ที่ประกอบด้วยกัน 2 ส่วนได้แก่
+The UI consists of two main sections:
 
 ## Request
 
-เป็นส่วนที่ใช้ Set เงื่อนไขการ Mock API
+This section allows you to define the conditions for mocking an API request.
 
 ![ui-request-part](readme-assets/ui-request-part.png)
 
-โดยจะมี Field ต่างๆ ดังต่อไปนี้
 
 | Field | Meaning |
 | --- | --- |
-| Name | ชื่อ Mock api ถ้าไม่ใส่ข้อมูลระบบจะนำชื่อ Path มาตั้งชื่อ |
-| Method | HTTP Method ที่ใช้ในการเรียก API |
-| Path | Path ที่ใช้ในการเรียก API |
-| Active | การเปิดการใช้งาน Mock api สำหรับ เส้น API นี้ |
-| Description | คำอธิบายเพิ่มเติม |
-| Strict content-type | กำหนด เงื่อนไขให้ Request ที่เข้ามาต้องมี Content-type ดังต่อไปนี้ ถึงจะเข้าเงื่อนไขการเรียกใช้งาน Mock API |
-| Strict body | กำหนด เงื่อนไขให้ Request ที่เข้ามาต้องมี Body ดังต่อไปนี้ ถึงจะเข้าเงื่อนไขการเรียกใช้งาน Mock API |
+| Name | Name of the mock API. If left empty, the system will use the Path as the name. |
+| Method | HTTP method (GET, POST, etc.) for the request. |
+| Path | The request path to be mocked. |
+| Active | Toggle to enable or disable the mock API for this route. |
+| Description | Additional details about the mock API. |
+| Strict content-type | Specifies that incoming requests must have the defined Content-Type to match this mock API. |
+| Strict body | Defines specific request body conditions that must be met for the mock API to be triggered. |
 
 ## Reponse
 
-เป็นส่วนที่ใช้ Set Response ของ Mock API
+This section allows you to define the mock API's response.
 
 ![ui-response-part](readme-assets/ui-response-part.png)
 
 | Field | Meaning |
 | --- | --- |
-| Delay (sec) | เวลาหน่วย วินาที ก่อนที่ Reponse จะ Return |
-| Status code | HTTP status code ที่ต้องการ Return |
-| Content-type | Content-type ที่ต้องการ Return |
-| body | Body ที่ต้องการ Return |
+| Delay (sec) | Time in seconds before the response is returned. |
+| Status code | HTTP status code for the response. |
+| Content-type | Content-Type of the response. |
+| body | The response body content. |
 
 ## Import by curl
 
-เป็น Feature ที่ช่วยในการสร้างข้อมูลการ Mock API ด้วย cURL โดยจะช่วยให้การสร้างการ Mock API สะดวกมากยิ่งขึ้น
+This feature allows you to quickly generate mock API configurations by pasting a cURL request, making it easier to set up new mock APIs.
 
 ![ui-import-by-curl](readme-assets/ui-import-by-curl.png)
